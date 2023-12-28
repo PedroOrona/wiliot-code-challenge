@@ -44,6 +44,8 @@ We also provide the following:
 
 First, make sure that you have configured the AWS CLI profile that will be used to create the infrastructure. If you're not using the default one, specify int the `infra/main.tf` file your profile name on the aws provider definition.
 
+Secondly, create the infrastructure necessary for this terraform backend project. We're defining in the `infra/backend.tf` file that this project will use an S3 bucket called `wiliot-locations-tfstate` to store the terraform state and a DynamoDB Table called `wiliot-locations-tf-lock`. Please make sure to follow the instructions [here](https://developer.hashicorp.com/terraform/language/settings/backends/s3) to set the right IAM permissions. If you want different names for these AWS resources, or use already created ones, feel free to edit the `infra/backend.tf` file.
+
 Then, to build the necessary infrastructure, do the following:
 
 1. Initialize the Terraform working directory:
