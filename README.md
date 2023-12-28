@@ -88,7 +88,10 @@ Then, to build the necessary infrastructure, do the following:
 
 4. Create the kubernetes objects by running the following:
     ```bash
-    helm install wiliot-chart helm --values helm/values.yaml -n location
+    helm install wiliot-chart helm \
+        --values helm/values.yaml \
+        -n location \ 
+        --create-namespace
     ```
 
     or if you have changes at the helm chart that you want do deploy, run the following:
@@ -102,14 +105,14 @@ Then, to build the necessary infrastructure, do the following:
     ```bash
     kubectl get services wiliot-chart \
         --namespace location \
-        --output jsonpath='{.status.loadBalancer.ingress[0].ip}'
+        --output jsonpath='{.status.loadBalancer.ingress[0].hostname}'
     ```
 
 ## Clean
 
 1. Delete all the Kubernetes resources by running:
     ```bash
-    helm uninstall wiliot-chart
+    helm uninstall wiliot-chart -n location
     ```
 
 2. Destroy the infrastructure by running:
