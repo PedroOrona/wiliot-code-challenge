@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "wiliot-chart.fullname" . }}-test-connection"
+  labels:
+    {{- include "wiliot-chart.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "wiliot-chart.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
