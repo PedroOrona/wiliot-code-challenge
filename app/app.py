@@ -46,9 +46,15 @@ class WiliotHandler(BaseHTTPRequestHandler):
             for location in LOCATION_TIMEZONES:
                 time_zone = pytz.timezone(location.timezone)
                 local_time = datetime.now(time_zone).time()
-                presentation += (
-                    f"{location.city}: {local_time.hour}:{local_time.minute}<br>"
+
+                dt = datetime.strptime(
+                    f"{local_time.hour}:{local_time.minute}", "%H:%M"
                 )
+                time_corrected = datetime.strftime(dt, "%H:%M")
+                presentation += f"{location.city}: {time_corrected}<br>"
+
+            logging.info("Location time returned with success!")
+
         except Exception as e:
             logging.error(
                 "Failed to get local time for location %s. Cause: %s.", location, e
@@ -69,6 +75,7 @@ class WiliotHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         self.wfile.write(bytes(json.dumps({"status_code": 200}), "utf-8"))
+        logging.info("Status code 200 returned with success")
 
 
 def run_server(server_class=HTTPServer, handler_class=WiliotHandler):
