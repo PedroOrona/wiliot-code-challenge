@@ -15,9 +15,9 @@ We also provide the following:
 - Python 3.9 (Download [here](https://www.python.org/downloads/))
 - Docker (Installation guide [here](https://docs.docker.com/get-docker/))
 - AWS CLI configured (Installation guide [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html))
-- Terraform 
-- Kubectl
-- Helm
+- Terraform (Installation guide [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli))
+- Kubectl (Installation guide [here](https://kubernetes.io/docs/tasks/tools/))
+- Helm (Installation guide [here](https://helm.sh/docs/intro/install/))
 
 ## Development
 
